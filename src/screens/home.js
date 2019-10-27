@@ -10,10 +10,13 @@ import allTheActions from '../actions'
 import {CommonText} from '../components/texts'
 import ItemDisplayer from '../components/itemDisplayer'
 import MoviePoster from '../components/moviePoster'
+import icons from '../components/icons'
 
 import isIphoneX from '../utils/isIphoneX'
 import checkIfisInMyMovies from '../utils/checkIfisInMyMovies'
 import {widht} from '../utils/getDimensions'
+
+const FontAwesome = icons('FontAwesome')
 
 class Home extends Component {
   static propTypes = {
@@ -111,13 +114,9 @@ class Home extends Component {
               <CommonText color="#000000">date de sortie ⬆</CommonText>
             </FilterRow>
           </FilterPicker>
-          <HeaderMenu>
+          <HeaderMenu onPress={this.animateHeader}>
             <FilterTouchable onPress={this.animateHeader}>
-              <CommonText color="#000000" weight={300} size={14}>
-                {this.state.headerAnimation === 'visible'
-                  ? 'Cacher filtres'
-                  : 'Voir filtres'}
-              </CommonText>
+              <FontAwesome color="white" name="filter"></FontAwesome>
             </FilterTouchable>
           </HeaderMenu>
         </AnimatedHeader>
@@ -125,6 +124,7 @@ class Home extends Component {
           <ItemDisplayer
             contentContainerStyle={{
               alignItems: 'center',
+              paddingTop: 36,
             }}
             extraData={myMoviesState}
             data={moviesState.movies.list}
@@ -163,11 +163,11 @@ const Header = styled.View`
   border-bottom-right-radius: 12px;
   box-shadow: 0px 0px 10px #0000003d;
 `
-const HeaderMenu = styled.View`
+const HeaderMenu = styled.TouchableOpacity`
   height: ${isIphoneX ? '100px' : '80px'};
   width: 100%;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   padding: 0px 12px;
 `
 const HollowHeader = styled(HeaderMenu)`
@@ -185,10 +185,16 @@ const HomeContainer = styled.View`
 `
 
 const FilterTouchable = styled.TouchableOpacity`
-  height: 80px;
   justify-content: center;
   align-items: center;
   padding: 0px 12px;
+  position: absolute;
+  bottom: -30px;
+  background-color: ${props => props.theme.general.badgeMenu};
+  height: 60px;
+  width: 60px;
+  z-index: 3;
+  border-radius: 30px;
 `
 
 const mapStateProps = state => ({
