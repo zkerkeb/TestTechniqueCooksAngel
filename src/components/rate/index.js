@@ -1,7 +1,9 @@
-import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import React, {Component} from 'react'
 import styled from 'styled-components'
+
 import {CommonText} from '../texts'
+
 export default class Rate extends Component {
   static propTypes = {
     onPress: PropTypes.func,
@@ -100,16 +102,14 @@ export default class Rate extends Component {
 const RateContainer = styled.View`
   align-self: center;
   background-color: ${props => props.theme.general.rateBackground}
-  flex-direction: row;
-  padding:12px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+  flex-direction: row;
+  padding:12px;
 `
 
 const RateTouchable = styled.TouchableOpacity`
-  margin: 0px 2px 0px 2px;
-  width: 25px;
-  height: 25px;
+  align-items: center;
   background-color: ${props =>
     props.selected
       ? props.rate >= 5
@@ -117,6 +117,8 @@ const RateTouchable = styled.TouchableOpacity`
         : props.theme.general.rateBad
       : props.theme.general.rate};
   border-radius: 25px;
-  align-items: center;
+  height: 25px;
   justify-content: center;
+  margin: 0px 2px 0px 2px;
+  width: 25px;
 `

@@ -17,18 +17,6 @@ const AppNavigator = createStackNavigator({
     screen: MovieDetails,
     navigationOptions: ({navigation}) => headerOptions(navigation),
   },
-  // Onboarding: {
-  //   screen: Onboarding,
-  //   navigationOptions: {
-  //     header: () => null
-  //   }
-  // },
-  // OptionsStack: {
-  //   screen: OptionsStack,
-  //   navigationOptions: {
-  //     header: () => null
-  //   }
-  // }
 })
 
 export default createAppContainer(AppNavigator)

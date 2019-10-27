@@ -5,22 +5,24 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 
 import ItemDisplayer from '../components/itemDisplayer'
-import SimilarMoviePoster from '../components/similarMoviePoster'
 import Rate from '../components/rate'
+import SimilarMoviePoster from '../components/similarMoviePoster'
 
-import allTheActions from '../actions'
 import {CommonText} from '../components/texts'
-import noImage from '../static/images/noImage.png'
 import AddMovies from '../components/addMovies'
+import allTheActions from '../actions'
+import Backdrop from '../components/backdrop'
+import Vote from '../components/vote'
 
 import checkIfisInMyMovies from '../utils/checkIfisInMyMovies'
 
 class MovieDetails extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
     actions: PropTypes.object,
-    myMoviesState: PropTypes.object,
     moviesRateState: PropTypes.object,
+    moviesState: PropTypes.object,
+    myMoviesState: PropTypes.object,
+    navigation: PropTypes.object,
   }
 
   state = {
@@ -61,28 +63,8 @@ class MovieDetails extends Component {
     const {movieDetails} = moviesState
     const isInMyMovies = checkIfisInMyMovies(this.state.id, myMoviesState.list)
     return (
-      <MovieDetailsContainer>
-        <BackdropContainer>
-          <Backdrop
-            defaultSource={noImage}
-            source={{
-              uri: `https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`,
-            }}></Backdrop>
-          <TitleContainer>
-            <GenreDisplayer horizontal={true}>
-              {movieDetails.genres.map(genre => (
-                <Genre key={genre.id}>
-                  <CommonText size={12} color="white">
-                    {genre.name}
-                  </CommonText>
-                </Genre>
-              ))}
-            </GenreDisplayer>
-            <CommonText numberOfLines={1} color="white">
-              {movieDetails.title}
-            </CommonText>
-          </TitleContainer>
-        </BackdropContainer>
+      <MovieDetailsContainer showsVerticalScrollIndicator={false}>
+        <Backdrop movieDetails={movieDetails}></Backdrop>
         <Rate
           rateObject={moviesRateState.ratedMovies[this.state.id]}
           onPress={this.rate}></Rate>
@@ -92,14 +74,7 @@ class MovieDetails extends Component {
           </CommonText>
         </SynopsisContainer>
         <InfoBar>
-          <VoteContainer>
-            <TextContainer>
-              <CommonText size={8}>NOTE MOYENNE</CommonText>
-            </TextContainer>
-            <RateAverage>
-              <CommonText size={20}>{movieDetails.vote_average}</CommonText>
-            </RateAverage>
-          </VoteContainer>
+          <Vote voteAverage={movieDetails.vote_average}></Vote>
           <AddMovies
             isInMyMovies={isInMyMovies}
             addMovie={() => actions.myMovies.addMovie(movieDetails)}
@@ -121,87 +96,29 @@ class MovieDetails extends Component {
 }
 
 const InfoBar = styled.View`
+  align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   margin: 12px 0px;
   padding: 0px 6px;
 `
-const VoteContainer = styled.View`
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: ${props => props.theme.general.voteText};
-`
-const TextContainer = styled.View`
-  padding: 0px 20px;
-`
-
-const RateAverage = styled.View`
-  align-items: center;
-  justify-content: center;
-  padding: 4px 4px;
-  background-color: ${props => props.theme.general.voteRate};
-`
 
 const SynopsisContainer = styled.View`
-  padding: 12px;
-  margin-top: 12px;
   background-color: ${props => props.theme.general.synopsis};
-`
-
-const GenreDisplayer = styled.View`
-  padding: 6px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-`
-const Genre = styled.View`
-  padding: 4px;
-  border-radius: 4px;
-  margin: 0px 4px;
-  background-color: ${props => props.theme.general.genre};
+  margin-top: 12px;
+  padding: 12px;
 `
 
 const SimilarMovieTitleContainer = styled.View`
-  width: 100%;
-
   align-items: center;
   justify-content: center;
   padding: 12px 0px;
+  width: 100%;
 `
 
 const MovieDetailsContainer = styled.ScrollView`
   flex: 1;
   background-color: ${props => props.theme.general.background};
-`
-
-const TitleContainer = styled.View`
-  position: absolute;
-  bottom: 0px;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  width: 100%;
-  background-color: #0000004d;
-  padding: 6px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-`
-
-const BackdropContainer = styled.View``
-
-const Backdrop = styled.Image`
-  height: 200px;
-  width: 100%;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  box-shadow: 0px 0px 10px #000000af;
-  overflow: hidden;
 `
 
 const mapStateProps = state => ({

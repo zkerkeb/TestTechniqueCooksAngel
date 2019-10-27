@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import idx from 'idx'
+import PropTypes from 'prop-types'
+import React, {Component} from 'react'
+import styled from 'styled-components'
 
 import {CommonText} from '../texts'
 
@@ -41,34 +41,34 @@ export default class MyMoviesPoster extends Component {
 }
 
 const MyRate = styled.View`
-  position: absolute;
+  align-items: center;
   background-color: ${props =>
     props.rate >= 5
       ? props.theme.general.rateGood
       : props.theme.general.rateBad};
+  border-radius: 6px;
   bottom: 30px;
   height: 20px;
-  width: 40px;
-  border-radius: 6px;
-  align-items: center;
   justify-content: center;
+  position: absolute;
   right: 12px;
+  width: 40px;
 `
 
 const MovieTouchable = styled.TouchableOpacity`
-  padding: 8px;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 8px;
 `
 
 const TextContainer = styled.View`
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100px;
 `
 
 const Poster = styled.Image`
+  border-radius: 8px;
   height: 150px;
   width: 100px;
-  border-radius: 8px;
 `

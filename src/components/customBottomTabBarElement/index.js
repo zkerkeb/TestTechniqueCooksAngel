@@ -74,9 +74,9 @@ export default class CustomBottomTabBarElement extends Component {
 const TabElement = styled.View`
   align-items: center;
   border-radius: 128px;
-  width: 30px;
   height: 30px;
   justify-content: center;
+  width: 30px;
 `
 
 const TabElementAnimated = posed(TabElement)({

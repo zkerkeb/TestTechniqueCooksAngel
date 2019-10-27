@@ -1,5 +1,4 @@
 import axios from 'axios'
-import moment from 'moment'
 
 export const DISPLAY_MOVIES = 'DISPLAY_MOVIES'
 export const CLEAR_MOVIES = 'CLEAR_MOVIES'
@@ -64,7 +63,6 @@ export const getSimilarMovies = id => dispatch => {
       },
     })
     .then(res => {
-      console.log('TCL: res', res)
       dispatch(displaySimilarMovies(res.data.results))
     })
 }

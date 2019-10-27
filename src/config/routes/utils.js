@@ -27,30 +27,4 @@ const headerOptions = (navigation, color) => ({
   headerTransparent: true,
 })
 
-// const headerMovieDetailsOptions = (navigation, color) => ({
-//   headerLeft: (
-//     <Button onPress={() => navigation.popToTop()}>
-//       <Ionicons
-//         size={30}
-//         color={color ? color : 'black'}
-//         name="ios-arrow-back"
-//       />
-//     </Button>
-//   ),
-//   headerTransparent: true,
-// })
-
-// DELETE
-const headerVisibleOptions = (navigation, color) => ({
-  headerLeft: (
-    <Button onPress={() => navigation.goBack()}>
-      <Ionicons
-        size={30}
-        color={color ? color : 'black'}
-        name="ios-arrow-back"
-      />
-    </Button>
-  ),
-})
-
-export {headerOptions, headerVisibleOptions}
+export {headerOptions}

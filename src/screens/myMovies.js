@@ -1,23 +1,23 @@
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import idx from 'idx'
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import idx from 'idx'
 
-import allTheActions from '../actions'
-import MyMoviesPoster from '../components/myMoviesPoster'
-import ItemDisplayer from '../components/itemDisplayer'
 import {CommonText} from '../components/texts'
+import allTheActions from '../actions'
+import ItemDisplayer from '../components/itemDisplayer'
+import MyMoviesPoster from '../components/myMoviesPoster'
 
 import {widht} from '../utils/getDimensions'
 import isIphoneX from '../utils/isIphoneX'
 
 class MyMovies extends Component {
   static propTypes = {
+    moviesRateState: PropTypes.object,
     myMoviesState: PropTypes.object,
     navigation: PropTypes.object,
-    moviesRateState: PropTypes.object,
   }
 
   state = {
@@ -64,9 +64,9 @@ class MyMovies extends Component {
           <ItemDisplayer
             contentContainerStyle={{alignItems: 'center'}}
             data={myMoviesState.list}
-            renderItem={this.renderMovies}
             numColumns={numColumns}
-            onEndReached={() => null}></ItemDisplayer>
+            onEndReached={() => null}
+            renderItem={this.renderMovies}></ItemDisplayer>
         ) : null}
       </MyMoviesContainer>
     )
@@ -74,15 +74,15 @@ class MyMovies extends Component {
 }
 
 const Header = styled.View`
-  height: ${isIphoneX ? '104px' : '64px'}
-  background-color: ${props => props.theme.general.header};
   align-items: center;
+  background-color: ${props => props.theme.general.header};
+  height: ${isIphoneX ? '104px' : '64px'}
   justify-content:center;
 `
 
 const MyMoviesContainer = styled.View`
-  flex: 1;
   background-color: ${props => props.theme.general.background};
+  flex: 1;
 `
 
 const mapStateProps = state => ({

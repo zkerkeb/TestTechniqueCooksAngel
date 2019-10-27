@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 
 import {CommonText} from '../texts'
@@ -31,15 +31,15 @@ export default class SimilarMoviePoster extends Component {
 }
 
 const MovieTouchable = styled.TouchableOpacity`
-  padding: 12px;
   height: 240px;
-  width: 150px;
   margin: 0px 6px;
+  padding: 12px;
+  width: 150px;
 `
 
 const TextContainer = styled.View`
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 150px;
 `
 

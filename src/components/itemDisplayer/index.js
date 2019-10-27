@@ -4,13 +4,13 @@ import styled from 'styled-components'
 
 export default class ItemDisplayer extends Component {
   static propTypes = {
-    data: PropTypes.array.isRequired,
-    renderItem: PropTypes.func.isRequired,
-    onEndReached: PropTypes.func.isRequired,
-    horizontal: PropTypes.bool,
     contentContainerStyle: PropTypes.object,
+    data: PropTypes.array.isRequired,
+    horizontal: PropTypes.bool,
     ListEmptyComponent: PropTypes.node,
     numColumns: PropTypes.number,
+    onEndReached: PropTypes.func.isRequired,
+    renderItem: PropTypes.func.isRequired,
   }
 
   render() {
@@ -19,18 +19,20 @@ export default class ItemDisplayer extends Component {
       data,
       horizontal = false,
       ListEmptyComponent,
+      numColumns,
       onEndReached,
       renderItem,
-      numColumns,
     } = this.props
     return (
       <ItemsDisplayer
         contentContainerStyle={contentContainerStyle}
         data={data}
-        numColumns={numColumns}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         horizontal={horizontal}
         keyExtractor={item => `${item.id}`}
         ListEmptyComponent={ListEmptyComponent}
+        numColumns={numColumns}
         onEndReached={onEndReached}
         renderItem={({item}) => renderItem(item)}></ItemsDisplayer>
     )

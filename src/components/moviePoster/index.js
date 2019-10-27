@@ -3,16 +3,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import {CommonText} from '../texts'
-import AddMovies from '../addMovies'
 
 import noImage from '../../static/images/noImage.png'
 
 export default class MoviePoster extends Component {
   static propTypes = {
-    item: PropTypes.object,
-    onPress: PropTypes.func,
-    myMoviesActions: PropTypes.object,
     isInMyMovies: PropTypes.bool,
+    item: PropTypes.object,
+    myMoviesActions: PropTypes.object,
+    onPress: PropTypes.func,
   }
 
   render() {
@@ -37,20 +36,15 @@ export default class MoviePoster extends Component {
           </AddOrRemoveMovie>
           <TextContainer>
             <CommonText
+              color="white"
               numberOfLines={1}
               size={12}
-              color="white"
               textAlign="center">
               {item.title}
             </CommonText>
           </TextContainer>
         </MovieTouchable>
-        <ButtonContainer>
-          {/* <AddMovies
-            addMovie={() => myMoviesActions.addMovie(item)}
-            removeMovie={() => myMoviesActions.removeMovie(item.id)}
-            isInMyMovies={isInMyMovies}></AddMovies> */}
-        </ButtonContainer>
+        <ButtonContainer></ButtonContainer>
       </>
     )
   }
@@ -78,12 +72,12 @@ const Poster = styled.Image`
   z-index: 2;
 `
 const AddOrRemoveMovie = styled.TouchableOpacity`
-  height: 50px;
-  width: 100px;
+  align-items: center;
   background-color: ${props => props.theme.general.addMoviesSign};
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  align-items: center;
+  height: 50px;
   justify-content: center;
   margin-top: -12px;
+  width: 100px;
 `
