@@ -1,8 +1,8 @@
 # TestTechniqueCooksAngel
 
-# Installation
------
-dans le dossier taper la commande
+## Installation
+
+Dans le dossier taper la commande
 
 ```yarn```
 
